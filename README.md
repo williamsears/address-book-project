@@ -4,12 +4,19 @@
   * Fork this repo and create a new Cloud9 project cloning your version
   * All your code will be in the `master` branch unless otherwise specified
 
+## Screencast
+Click on the image below to look at a screencast of *one possible solution*:
+
+[![Demo of address book project](https://asciinema.org/a/4am79qbzzlej1r3cpl5idzqw6.png)](https://asciinema.org/a/4am79qbzzlej1r3cpl5idzqw6)
+
+**IMPORTANT**: Your solution **does not have** to look *exactly* like this one! What we mostly care about is that you practice manipulating arrays/objects and writing asynchronous code :)
+
 ## Spec
 You are tasked with writing a command-line version of an address book. Your program will use NPM to manage its dependencies so you should initialize a `package.json` as soon as you get started. Be descriptive in the name, description and tags you use.
 
 **This version of the address book assumes that entries are located in Canada.**
 
-When the program starts for the first time, it should display the **main menu** to the user using the `inquirer` module from NPM.
+When the program starts for the first time, it should display the **main menu** to the user using the [`inquirer`](https://www.npmjs.com/package/inquirer) module from NPM.
 
 ### Main menu
 The main menu should ask the user to choose between one of the following options:
