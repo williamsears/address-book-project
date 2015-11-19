@@ -1,0 +1,32 @@
+{
+  "name": "address-book-project",
+  "version": "1.0.0",
+  "description": "This project allows you to create a new entry and view its details.",
+  "main": "initMenu.js",
+  "dependencies": {
+    "node-menu": "^0.0.9",
+    "request": "^2.67.0",
+    "prompt": "^0.2.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williamsears/address-book-project.git"
+  },
+  "keywords": [
+    "address",
+    "book",
+    "project",
+    "november",
+    "19"
+  ],
+  "author": "William Sears Nick Bakolias",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/williamsears/address-book-project/issues"
+  },
+  "homepage": "https://github.com/williamsears/address-book-project#readme"
+}
