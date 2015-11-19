@@ -1,9 +1,11 @@
 var prompt = require('prompt');
-var contactList = [];
 var inquirer = require('inquirer');
-function createContact() {
+var main = require('./callToAction');
+var contactList = [];
 
-    inquirer.prompt.get([{
+function createContact(callback) {
+
+    inquirer.prompt([{
         name: 'first',
         message: 'Enter First Name'
     }, {
@@ -33,57 +35,52 @@ function createContact() {
     }, {
         name: 'country',
         message: 'Enter Country'
-    }], function(err, res) {
-        if (err) {
-            console.log('ERROR');
+    }, {
+        name: 'address2',
+        message: 'Would you like to enter another address?'
+    }], function(res) {
+
+        if (res.address2 === 'yes') {
+            inquirer.prompt([{
+                    name: 'addressNum',
+                    message: 'Enter Street Number'
+                }, {
+                    name: 'addressStr',
+                    message: 'Enter Street'
+                }, {
+                    name: 'city',
+                    message: 'Enter City'
+                }, {
+                    name: 'province',
+                    message: 'Enter Province'
+                }, {
+                    name: 'country',
+                    message: 'Enter Country'
+                }],
+                function(res1) {
+
+                    var b = [res1.addressNum, res1.addressStr, res1.city, res1.province, res1.country];
+                    res.address2 = b.join(' ');
+                    var a = [res.addressNum, res.addressStr, res.city, res.province, res.country];
+                    res.address = a.join(' ');
+                    contactList.push(res);
+
+                    console.log(contactList[contactList.length - 1]);
+                    callback();
+                });
         }
-        inquirer.prompt.get({
-            name: 'yesno',
-            message: 'Would you like to enter another address?'
-        }, function(err, res1) {
-            if (err) {
-                console.log('ERROR');
-            }
-            if (res1.yesno === 'yes') {
-                inquirer.prompt.get([{
-                        name: 'addressNum',
-                        message: 'Enter Street Number'
-                    }, {
-                        name: 'addressStr',
-                        message: 'Enter Street'
-                    }, {
-                        name: 'city',
-                        message: 'Enter City'
-                    }, {
-                        name: 'province',
-                        message: 'Enter Province'
-                    }, {
-                        name: 'country',
-                        message: 'Enter Country'
-                    }],
-                    function(err, res2) {
-                        if (err) {
-                            console.log('ERROR');
-                        }
-                        var b = [res2.addressNum, res2.addressStr, res2.city, res2.province, res2.country];
-                        res.address2 = b.join(' ');
-                        var a = [res.addressNum, res.addressStr, res.city, res.province, res.country];
-                        res.address = a.join(' ');
-                        contactList.push(res);
-
-                        console.log(contactList[contactList.length - 1]);
-                    });
-            } else {
-                var a = [res.addressNum, res.addressStr, res.city, res.province, res.country];
-                res.address = a.join(' ');
-                contactList.push(res);
-
-                console.log(contactList[contactList.length - 1]);
-            }
-        });
-
+        else {
+            var a = [res.addressNum, res.addressStr, res.city, res.province, res.country];
+            res.address = a.join(' ');
+            contactList.push(res);
+            console.log(res.first + " has been added as a contact!");
+            console.log(contactList[contactList.length - 1]);
+            callback();
+        }
     });
+
 }
+
 module.exports = {
     create: createContact,
     list: contactList
