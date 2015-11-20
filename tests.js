@@ -1,10 +1,7 @@
 var inquirer = require('inquirer');
 //var main = require('./callToAction');
 //var Table = require('cli-table');
-var contactList = [{
-    first: "nick",
-    last: "bakolias"
-}];
+var contactList = [];
 
 function createContact(callback) {
     // Need to make sure user choses valid answers!
@@ -32,30 +29,30 @@ function createContact(callback) {
         var questions = [];
 
         if (choices.addressChoice.indexOf('home') > -1) {
-            questions.push([{
+            questions.push({
                 name: 'homeAddressNum',
-                message: 'Address Line 1'
+                message: 'Enter Home Address Line 1'
             }, {
                 name: 'homeAddressStr',
-                message: 'Address Line 2 (optional)'
+                message: 'Enter Home Address Line 2 (optional)'
             }, {
                 name: 'homeCity',
-                message: 'Enter City'
+                message: 'Enter Home City'
             }, {
                 name: 'homeProvince',
-                message: 'Enter Province'
+                message: 'Enter Home Province'
             }, {
                 name: 'HomeCountry',
-                message: 'Enter Country'
-            }]);
+                message: 'Enter Home Country'
+            });
         }
         if (choices.addressChoice.indexOf('work') > -1) {
-                    questions.push({
+            questions.push({
                 name: 'workAddressNum',
-                message: 'Address Line 1'
+                message: 'Enter Work Address Line 1'
             }, {
                 name: 'workAddressStr',
-                message: 'Address Line 2 (optional)'
+                message: 'Enter Work Address Line 2 (optional)'
             }, {
                 name: 'workCity',
                 message: 'Enter City'
@@ -68,7 +65,7 @@ function createContact(callback) {
             });
         }
         if (choices.addressChoice.indexOf('other') > -1) {
-                        questions.push({
+            questions.push({
                 name: 'otherAddressNum',
                 message: 'Address Line 1'
             }, {
@@ -85,100 +82,69 @@ function createContact(callback) {
                 message: 'Enter Country'
             });
         }
-        
+
         if (choices.phoneChoice.indexOf('home') > -1) {
             questions.push({
-        name: 'homePhone',
-        message: 'Enter Home Number:'
-    });
+                name: 'homePhone',
+                message: 'Enter Home Number'
+            });
         }
         if (choices.phoneChoice.indexOf('work') > -1) {
             questions.push({
-        name: 'workPhone',
-        message: 'Enter Work Number:'
-    });
+                name: 'workPhone',
+                message: 'Enter Work Number'
+            });
         }
         if (choices.phoneChoice.indexOf('other') > -1) {
-        questions.push({
-        name: 'otherPhone',
-        message: 'Enter other Number:'
-    });
-
-        }
-    
-        inquirer.prompt(questions, function(response){
-            console.log(response);
-            console.log(choices);
-        });        
-        });
-
-
-
-}
-createContact();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    
-                function(res1) {
-
-                    var b = [res1.addressNum, res1.addressStr, res1.city, res1.province, res1.country];
-                    res.address2 = b.join(' ');
-                    var a = [res.addressNum, res.addressStr, res.city, res.province, res.country];
-                    res.address = a.join(' ');
-                    contactList.push(res);
-
-                    console.log(contactList[contactList.length - 1]);
-                    callback();
-                });
-        }
-        else {
-            var a = [res.addressNum, res.addressStr, res.city, res.province, res.country];
-            res.address = a.join(' ');
-            contactList.push(res);
-            /* vertical 
-            var vertical_table = new Table();
-            vertical_table.push({
-                "CATEGORIES": "        VALUES"
-            }, {
-                "Name": res.first
-            }, {
-                "Last Name": res.last
-            }, {
-                "Phone": res.phone
-            }, {
-                "Phone 2": res.phone2
-            }, {
-                "Email": res.email
-            }, {
-                "Address": res.address
+            questions.push({
+                name: 'otherPhone',
+                message: 'Enter other Number'
             });
 
-            console.log(vertical_table.toString());
-            callback();
         }
+
+        inquirer.prompt(questions, function(response) {
+            console.log(response);
+            console.log(choices);
+            var obj = {};
+            obj.first = choices.first;
+            obj.last = choices.last;
+
+            if (choices.birthday === true) {
+                obj.birthday = choices.birthday;
+            }
+
+            if (choices.addressChoice.indexOf('home') > -1) {
+                var temp = [];
+                temp.push(response.homeAddressNum, response.homeAddressStr, response.homeCity, response.homeProvince, response.homeCountry);
+                obj.homeAddress = temp.join(" ");
+            }
+            if (choices.addressChoice.indexOf('work') > -1) {
+                var temp1 = [];
+                temp1.push(response.workAddressNum, response.workAddressStr, response.workCity, response.workProvince, response.workCountry);
+                obj.workAddress = temp1.join(" ");
+            }
+            if (choices.addressChoice.indexOf('other') > -1) {
+                var temp2 = [];
+                temp2.push(response.otherAddressNum, response.otherAddressStr, response.otherCity, response.otherProvince, response.otherCountry);
+                obj.otherAddress = temp2.join(" ");
+            }
+            if (choices.phoneChoice.indexOf('home') > -1) {
+                obj.homePhone = response.homePhone;
+            }
+
+            if (choices.phoneChoice.indexOf('work') > -1) {
+                obj.workPhone = response.workPhone;
+            }
+            if (choices.phoneChoice.indexOf('other') > -1) {
+                obj.otherPhone = response.otherPhone;
+            }
+            console.log(obj);
+
+        });
     });
+
+
 
 }
 createContact();
-
-module.exports = {
-    create: createContact,
-    list: contactList
-};
-*/
