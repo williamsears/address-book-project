@@ -42,7 +42,7 @@ function search(cb) {
             inquirer.prompt(questions, function(answers) {
                     //have to iterate over all elements of the object, can i just use a foreach()?
                     if (answers === "Edit the current entry") {
-
+                        //have to put all the "});" at the end.
                         console.log(contactList.list[current].phone);
                         inquirer.prompt([{
                                 type: 'confirm',
@@ -94,22 +94,88 @@ function search(cb) {
 
 
 
-                                    console.log(contactList.list[current].last);
+                                    console.log(contactList.list[current].phone2);
                                     inquirer.prompt([{
                                         type: 'confirm',
-                                        name: 'changeLast',
-                                        message: 'Do you want to change the last name?'
-                                    }], function(ansLast) {
-                                        if (ansLast.changeLast) {
+                                        name: 'changePhone2',
+                                        message: 'Do you want to change the 2nd phone number?'
+                                    }], function(ansPhone2) {
+                                        if (ansPhone2.change) {
                                             inquirer.prompt([{
-                                                name: 'newLast',
-                                                message: 'Enter last name: '
-                                            }], function(ansLast1) {
-                                                contactList.list[current].first = ansLast1.newLast;
+                                                name: 'newPhone2',
+                                                message: 'Enter : '
+                                            }], function(ans1Phone2) {
+                                                contactList.list[current].phone2 = ans1Phone2.newPhone2;
                                             });
                                         }
 
                                     });
+
+
+
+                                    console.log(contactList.list[current].email);
+                                    inquirer.prompt([{
+                                        type: 'confirm',
+                                        name: 'changeEmail',
+                                        message: 'Do you want to change the E-mail?'
+                                    }], function(ansEmail) {
+                                        if (ansEmail.changeEmail) {
+                                            inquirer.prompt([{
+                                                name: 'newEmail',
+                                                message: 'Enter new Email: '
+                                            }], function(ansEmail1) {
+                                                contactList.list[current].email = ansEmail1.newEmail;
+                                            });
+                                        }
+
+                                    });
+                                    
+                                    
+                                    console.log(contactList.list[current].address);
+                                    inquirer.prompt([{
+                                        type: 'confirm',
+                                        name: 'changeAddress',
+                                        message: 'Do you want to change the address?'
+                                    }], function(ansAddress) {
+                                        if (ansAddress.changeAddress) {
+                                            inquirer.prompt([{
+                                                name: 'newAddress',
+                                                message: 'Enter new address: '
+                                            }], function(ansAddress1) {
+                                                contactList.list[current].address = ansAddress1.newAddress;
+                                            });
+                                        }
+
+                                    });
+                                    
+                                    console.log(contactList.list[current].);
+                                    inquirer.prompt([{
+                                        type: 'confirm',
+                                        name: 'change',
+                                        message: 'Do you want to change the ?'
+                                    }], function(ans) {
+                                        if (ans.change) {
+                                            inquirer.prompt([{
+                                                name: 'new',
+                                                message: 'Enter : '
+                                            }], function(ans1) {
+                                                contactList.list[current].first = ans1.new;
+                                            });
+                                        }
+
+                                    });
+                                    
+                                    
+
+
+
+
+
+
+
+
+
+
 
                                 });
                             }
