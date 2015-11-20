@@ -2,7 +2,7 @@
 
 var mainMenu = require('./menuInit');
 var createContact = require('./new-contact-menu');
-var search = require('./search-menu');
+//var search = require('./search-menu');
 
 function main() {
     mainMenu(function(choice) {

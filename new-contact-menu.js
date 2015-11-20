@@ -4,7 +4,7 @@ var main = require('./callToAction');
 var contactList = [];
 
 function createContact(callback) {
-
+// Need to make sure user choses valid answers!
     inquirer.prompt([{
         name: 'first',
         message: 'Enter First Name'
