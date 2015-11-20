@@ -2,13 +2,14 @@
 var Table = require('cli-table');
 var inquirer = require('inquirer');
 var prompt = ('prompt');
+var mainMenu = require('mainMenu')
 
 
 var inquirer = require('inquirer');
 
 // var createContact = require('./new-contact-menu');
 
-function searchMenu(cb) {
+function searchMenu(contact, cb) {
 
   "use strict";
 
@@ -20,6 +21,9 @@ function searchMenu(cb) {
   }];
 
   inquirer.prompt(questions, function(answers) {
+   if (answers.choices.indexOf('Main Menu') > -1) {
+     mainMenu();
+   }
     cb(answers.searchmenu);
   });
 }

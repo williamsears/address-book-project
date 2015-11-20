@@ -49,27 +49,14 @@ if (contactlist[i].otherPhone === true) {
 }
 if (contactlist[i].email === true) {
     vertical_table.push({
-        'E-mail': contactlist[i].otherPhone
+        'E-mail': contactlist[i].email
     });
 }
 if (contactlist[i].email2 === true) {
     vertical_table.push({
-        'Secondary E-mail': contactlist[i].otherPhone
+        'Secondary E-mail': contactlist[i].email2
     });
 }
 
-
-var phones = [{
-    type: 'work',
-    number: '2131312321'
-}];
-
-if (phones.length) {
-    var phoneNumbersString;
-
-    vertical_table.push({
-        'Phones': phoneNumbersString
-    })
-}
 
 console.log(vertical_table.toString());

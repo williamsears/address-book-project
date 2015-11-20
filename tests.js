@@ -1,7 +1,9 @@
 var inquirer = require('inquirer');
+
 //var main = require('./callToAction');
-//var Table = require('cli-table');
+var Table = require('cli-table');
 var contactList = [];
+var currentIndex;
 
 function createContact(callback) {
     // Need to make sure user choses valid answers!
@@ -104,13 +106,11 @@ function createContact(callback) {
         }
 
         inquirer.prompt(questions, function(response) {
-            console.log(response);
-            console.log(choices);
             var obj = {};
             obj.first = choices.first;
             obj.last = choices.last;
 
-            if (choices.birthday === true) {
+            if (choices.birthday) {
                 obj.birthday = choices.birthday;
             }
 
@@ -139,7 +139,57 @@ function createContact(callback) {
             if (choices.phoneChoice.indexOf('other') > -1) {
                 obj.otherPhone = response.otherPhone;
             }
-            console.log(obj);
+            var vertical_table = new Table();
+
+            if (obj.first) {
+                vertical_table.push({
+                    'Name': obj.first + " " + obj.last
+                });
+            }
+            if (obj.birthday) {
+                vertical_table.push({
+                    'Birthday': obj.birthday
+                });
+            }
+            if (obj.homeAddress) {
+                vertical_table.push({
+                    'Home Address': obj.homeAddress
+                });
+            }
+            if (obj.workAddress) {
+                vertical_table.push({
+                    'Work Address': obj.workAddress
+                });
+            }
+            if (obj.otherAddress) {
+                vertical_table.push({
+                    'Other Address': obj.otherAddress
+                });
+            }
+            if (obj.homePhone) {
+                vertical_table.push({
+                    'Home Phone': obj.homePhone
+                });
+            }
+            if (obj.workPhone) {
+                vertical_table.push({
+                    'Work Phone': obj.workPhone
+                });
+            }
+            if (obj.otherPhone) {
+                vertical_table.push({
+                    'Other Phone': obj.otherPhone
+                });
+            }
+            if (obj.email) {
+                vertical_table.push({
+                    'E-mail': obj.email
+                });
+            }
+            contactList.push(obj);
+            console.log(vertical_table.toString());
+            currentIndex = contactList.length - 1;
+
 
         });
     });
