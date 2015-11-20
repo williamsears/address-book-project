@@ -1,10 +1,11 @@
 var prompt = require('prompt');
 var inquirer = require('inquirer');
 var main = require('./callToAction');
-var contactList = [];
+var Table = require('cli-table');
+var contactList = [{first:"nick",last:"bakolias"}];
 
 function createContact(callback) {
-// Need to make sure user choses valid answers!
+    // Need to make sure user choses valid answers!
     inquirer.prompt([{
         name: 'first',
         message: 'Enter First Name'
@@ -36,11 +37,12 @@ function createContact(callback) {
         name: 'country',
         message: 'Enter Country'
     }, {
+        type: 'confirm',
         name: 'address2',
         message: 'Would you like to enter another address?'
     }], function(res) {
 
-        if (res.address2 === 'yes') {
+        if (res.address2 === true) {
             inquirer.prompt([{
                     name: 'addressNum',
                     message: 'Enter Street Number'
@@ -73,8 +75,25 @@ function createContact(callback) {
             var a = [res.addressNum, res.addressStr, res.city, res.province, res.country];
             res.address = a.join(' ');
             contactList.push(res);
-            console.log(res.first + " has been added as a contact!");
-            console.log(contactList[contactList.length - 1]);
+            /* vertical */
+            var vertical_table = new Table();
+            vertical_table.push({
+                "CATEGORIES": "        VALUES"
+            }, {
+                "Name": res.first
+            }, {
+                "Last Name": res.last
+            }, {
+                "Phone": res.phone
+            }, {
+                "Phone 2": res.phone2
+            }, {
+                "Email": res.email
+            }, {
+                "Address": res.address
+            });
+
+            console.log(vertical_table.toString());
             callback();
         }
     });
