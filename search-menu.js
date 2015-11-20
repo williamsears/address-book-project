@@ -40,70 +40,90 @@ function search(cb) {
             }];
 
             inquirer.prompt(questions, function(answers) {
+                    //have to iterate over all elements of the object, can i just use a foreach()?
                     if (answers === "Edit the current entry") {
 
-                        console.log(contactList.list[current].first);
+                        console.log(contactList.list[current].phone);
                         inquirer.prompt([{
-                            type: 'confirm',
-                            name: 'changeFirst',
-                            message: 'Do you want to change the first name?'
-                        }], function(answ) {
-                            if (answ.changeFirst) {
+                                type: 'confirm',
+                                name: 'changeFirst',
+                                message: 'Do you want to change the first name?'
+                            }], function(ansFirst) {
+                                if (ansFirst.changeFirst) {
+                                    inquirer.prompt([{
+                                        name: 'newFirst',
+                                        message: 'Enter new first name: '
+                                    }], function(newFirst) {
+                                        contactList.list[current].first = ansFirst.newFirst;
+                                    });
+                                }
+
+                                console.log(contactList.list[current].last);
                                 inquirer.prompt([{
-                                    name: 'newFirst',
-                                    message: 'Enter first name: '
-                                }], function(ansFirst) {
-                                    contactList.list[current].first = ansFirst.newFirst
+                                    type: 'confirm',
+                                    name: 'changeLast',
+                                    message: 'Do you want to change the last name?'
+                                }], function(ansLast) {
+                                    if (ansLast.changeLast) {
+                                        inquirer.prompt([{
+                                            name: 'newLast',
+                                            message: 'Enter last name: '
+                                        }], function(ansLast1) {
+                                            contactList.list[current].first = ansLast1.newLast;
+                                        });
+                                    }
+
+                                });
+
+
+
+                                console.log(contactList.list[current].phone);
+                                inquirer.prompt([{
+                                    type: 'confirm',
+                                    name: 'changePhone',
+                                    message: 'Do you want to change the phone number?'
+                                }], function(ansPhone) {
+                                    if (ansPhone.changePhone) {
+                                        inquirer.prompt([{
+                                            name: 'newPhone',
+                                            message: 'Enter new phone number: '
+                                        }], function() {
+                                            contactList.list[current].Phone = ansFirst.newPhone
+                                        });
+                                    }
+
+
+
+                                    console.log(contactList.list[current].last);
+                                    inquirer.prompt([{
+                                        type: 'confirm',
+                                        name: 'changeLast',
+                                        message: 'Do you want to change the last name?'
+                                    }], function(ansLast) {
+                                        if (ansLast.changeLast) {
+                                            inquirer.prompt([{
+                                                name: 'newLast',
+                                                message: 'Enter last name: '
+                                            }], function(ansLast1) {
+                                                contactList.list[current].first = ansLast1.newLast;
+                                            });
+                                        }
+
+                                    });
+
                                 });
                             }
 
-                            console.log(contactList.list[current].last);
-                            inquirer.prompt([{
-                                type: 'confirm',
-                                name: 'changeLast',
-                                message: 'Do you want to change the last name?'
-                            }], function(ansLast) {
-                                if (ansLast.changeLast) {
-                                    inquirer.prompt([{
-                                        name: 'newLast',
-                                        message: 'Enter last name: '
-                                    }], function(ansLast1) {
-                                        contactList.list[current].first = ansLast1.newLast;
-                                    });
-                                }
+                        }
+                        else if (answers === "Delete the current entry") {
 
-                            });
-
-                            console.log(contactList.list[current].last);
-                            inquirer.prompt([{
-                                type: 'confirm',
-                                name: 'changeLast',
-                                message: 'Do you want to change the last name?'
-                            }], function(ansLast) {
-                                if (ansLast.changeLast) {
-                                    inquirer.prompt([{
-                                        name: 'newLast',
-                                        message: 'Enter last name: '
-                                    }], function(ansLast1) {
-                                        contactList.list[current].first = ansLast1.newLast;
-                                    });
-                                }
-
-                            });
-
-                        });
-                    }
-
-                }
-                else if (answers === "Delete the current entry") {
-
-                }
-                else {
-                    cb();
-                }
+                        }
+                        else {
+                            cb();
+                        }
+                    });
             });
-    });
-}
+    }
 }
 
 
