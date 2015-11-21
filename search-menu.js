@@ -1,15 +1,11 @@
-//var contactList = require('./new-contact-menu');
-var Table = require('cli-table');
+var callToAction = require('./callToAction')
+var table = require('cli-table');
 var inquirer = require('inquirer');
-var prompt = ('prompt');
-var mainMenu = require('mainMenu')
 
-
-var inquirer = require('inquirer');
 
 // var createContact = require('./new-contact-menu');
 
-function searchMenu(contact, cb) {
+function searchMenu() {
 
   "use strict";
 
@@ -21,11 +17,24 @@ function searchMenu(contact, cb) {
   }];
 
   inquirer.prompt(questions, function(answers) {
-   if (answers.choices.indexOf('Main Menu') > -1) {
-     mainMenu();
-   }
-    cb(answers.searchmenu);
-  });
+  if (answers.searchmenu.indexOf('Main Menu') > -1) {
+     
+     callToAction.mainMenu();
+  } else if (answers.searchmenu.indexOf('Edit Contact') > -1){
+      console.log('edit');
+  }
+    else if (answers.searchmenu.indexOf('Delete Contact') > -1){
+    //   var temp = [];
+    //   for(var i = 0; i < createContact.li; i++){
+    //       if(i !== createContact.currentIndex){
+    //             temp.push(createContact.li[i]);
+    //      
+    //    
+    //}
 }
-searchMenu();
+    }
+ 
+
+  );
+}
 module.exports = searchMenu;

@@ -1,23 +1,23 @@
-var inquirer = require('inquirer');
-var Table = require('cli-table');
-
-
-function createContact() {
+function editContact() {
     // Need to make sure user choses valid answers!
     inquirer.prompt([{
         name: 'first',
-        message: 'Enter first name:'
+        message: 'Enter first name:',
+        default: contactList[currentIndex].first
     }, {
         name: 'last',
-        message: 'Enter last name:'
+        message: 'Enter last name:',
+        default: contactList[currentIndex].last
     }, {
         name: 'birthday',
-        message: 'Enter birthday (optional):'
+        message: 'Enter birthday (optional):',
+        default: contactList[currentIndex].birthday
     }, {
         type: 'checkbox',
         name: 'addressChoice',
         message: 'which address/es would you like to add?',
         choices: ['home', 'work', 'other']
+        
     }, {
         type: 'checkbox',
         name: 'phoneChoice',
@@ -30,74 +30,92 @@ function createContact() {
         if (choices.addressChoice.indexOf('home') > -1) {
             questions.push({
                 name: 'homeAddressNum',
-                message: 'Enter Home Address Line 1'
+                message: 'Enter Home Address Line 1',
+                default: contactList[currentIndex].homeAddressNum
             }, {
                 name: 'homeAddressStr',
-                message: 'Enter Home Address Line 2 (optional)'
+                message: 'Enter Home Address Line 2 (optional)',
+                default: contactList[currentIndex].homeAddessStr
             }, {
                 name: 'homeCity',
-                message: 'Enter Home City'
+                message: 'Enter Home City',
+                default: contactList[currentIndex].homeCity
             }, {
                 name: 'homeProvince',
-                message: 'Enter Home Province'
+                message: 'Enter Home Province',
+                default: contactList[currentIndex].homeProvince
             }, {
                 name: 'HomeCountry',
-                message: 'Enter Home Country'
+                message: 'Enter Home Country',
+                default: contactList[currentIndex].homeCountry
             });
         }
         if (choices.addressChoice.indexOf('work') > -1) {
             questions.push({
                 name: 'workAddressNum',
-                message: 'Enter Work Address Line 1'
+                message: 'Enter Work Address Line 1',
+                default: contactList[currentIndex].workAddressNum
             }, {
                 name: 'workAddressStr',
-                message: 'Enter Work Address Line 2 (optional)'
+                message: 'Enter Work Address Line 2 (optional)',
+                default: contactList[currentIndex].workAddressStr
             }, {
                 name: 'workCity',
-                message: 'Enter City'
+                message: 'Enter City',
+                default: contactList[currentIndex].workCity
             }, {
                 name: 'workProvince',
-                message: 'Enter Province'
+                message: 'Enter Province',
+                default: contactList[currentIndex].workProvince
             }, {
                 name: 'workCountry',
-                message: 'Enter Country'
+                message: 'Enter Country',
+                default: contactList[currentIndex].workCountry
             });
         }
         if (choices.addressChoice.indexOf('other') > -1) {
             questions.push({
                 name: 'otherAddressNum',
-                message: 'Address Line 1'
+                message: 'Address Line 1',
+                default: contactList[currentIndex].otherAddressNum
             }, {
                 name: 'otherAddressStr',
-                message: 'Address Line 2 (optional)'
+                message: 'Address Line 2 (optional)',
+                default: contactList[currentIndex].otherAddressStr
             }, {
                 name: 'otherCity',
-                message: 'Enter City'
+                message: 'Enter City',
+                default: contactList[currentIndex].otherCity
             }, {
                 name: 'otherProvince',
-                message: 'Enter Province'
+                message: 'Enter Province',
+                default: contactList[currentIndex].otherProvince
             }, {
                 name: 'otherCountry',
-                message: 'Enter Country'
+                message: 'Enter Country',
+                default: contactList[currentIndex].otherCountry
             });
         }
 
         if (choices.phoneChoice.indexOf('home') > -1) {
             questions.push({
                 name: 'homePhone',
-                message: 'Enter Home Number'
+                message: 'Enter Home Number',
+                default: contactList[currentIndex].homePhone
             });
         }
         if (choices.phoneChoice.indexOf('work') > -1) {
             questions.push({
                 name: 'workPhone',
-                message: 'Enter Work Number'
+                message: 'Enter Work Number',
+                default: contactList[currentIndex].workPhone
             });
         }
         if (choices.phoneChoice.indexOf('other') > -1) {
             questions.push({
                 name: 'otherPhone',
-                message: 'Enter other Number'
+                message: 'Enter other Number',
+                default: contactList[currentIndex].otherPhone
             });
 
         }
@@ -115,16 +133,31 @@ function createContact() {
                 var temp = [];
                 temp.push(response.homeAddressNum, response.homeAddressStr, response.homeCity, response.homeProvince, response.homeCountry);
                 obj.homeAddress = temp.join(" ");
+                obj.homeAddressNum = response.homeAddressNum; 
+                obj.homeAddressStr = response.homeAddressStr;
+                obj.homeCity = response.homeCity;
+                obj.homeProvince = response.homeProvince;
+                obj.homeCountry = response.homeCountry;
             }
             if (choices.addressChoice.indexOf('work') > -1) {
                 var temp1 = [];
                 temp1.push(response.workAddressNum, response.workAddressStr, response.workCity, response.workProvince, response.workCountry);
                 obj.workAddress = temp1.join(" ");
+                obj.workAddressNum = response.workAddressNum; 
+                obj.workAddressStr = response.workAddressStr;
+                obj.workCity = response.workCity;
+                obj.workProvince = response.workProvince;
+                obj.workCountry = response.workCountry;
             }
             if (choices.addressChoice.indexOf('other') > -1) {
                 var temp2 = [];
                 temp2.push(response.otherAddressNum, response.otherAddressStr, response.otherCity, response.otherProvince, response.otherCountry);
                 obj.otherAddress = temp2.join(" ");
+                obj.otherAddressNum = response.otherAddressNum; 
+                obj.otherAddressStr = response.otherAddressStr;
+                obj.otherCity = response.otherCity;
+                obj.otherProvince = response.otherProvince;
+                obj.otherCountry = response.otherCountry;
             }
             if (choices.phoneChoice.indexOf('home') > -1) {
                 obj.homePhone = response.homePhone;
@@ -183,15 +216,14 @@ function createContact() {
                     'E-mail': obj.email
                 });
             }
-            main.contactList.push(obj);
+            contactList[currentIndex] = obj;
             console.log(vertical_table.toString());
-            main.currentIndex = main.contactList.length - 1;
 
-            main.mainMenu();
+            searchMenu();
         });
     });
 
 
 
 }
-module.exports = createContact;
+
