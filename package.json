@@ -1,12 +1,15 @@
 {
-  "name": "address-book-project",
+  "name": "address-book",
   "version": "1.0.0",
-  "description": "This project allows you to create a new entry and view its details.",
-  "main": "initMenu.js",
+  "description": "address book project javascript",
+  "main": "callToAction.js",
   "dependencies": {
-    "node-menu": "^0.0.9",
+    "cli-table": "^0.3.1",
+    "inquirer": "^0.11.0",
     "request": "^2.67.0",
-    "prompt": "^0.2.14"
+    "prompt": "^0.2.14",
+    "node-menu": "^0.0.9",
+    "wrappy": "^1.0.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,14 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/williamsears/address-book-project.git"
   },
-  "keywords": [
-    "address",
-    "book",
-    "project",
-    "november",
-    "19"
-  ],
-  "author": "William Sears Nick Bakolias",
+  "author": "nick bakolias william sears",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/williamsears/address-book-project/issues"
