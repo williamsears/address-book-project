@@ -1,4 +1,4 @@
-// initializes the whole project
+// add a 5th mennu option 
 
 var inquirer = require('inquirer');
 var contactList = [{
@@ -26,7 +26,23 @@ function mainMenu() {
         type: "rawlist",
         name: "mainmenu",
         choices: ["Create new entry", "Search the directory", "Quit", "Credits"],
-        message: "What would you like to do?"
+        message: "What would you like to do?",
+        validate: function(input) {
+
+            // Declare function as asynchronous, and save the done callback 
+            var done = this.async();
+
+            // Do async stuff 
+            setTimeout(function() {
+                if (input === "") {
+                    // Pass the return value in the done callback 
+                    done("You must answer this question to proceed.");
+                    return;
+                }
+                // Pass the return value in the done callback 
+                done(true);
+            }, 3000);
+        }
     }];
 
     inquirer.prompt(questions, function(answers) {
@@ -41,6 +57,7 @@ function mainMenu() {
         }
         else if (answers.mainmenu.indexOf('Credits') > -1) {
             console.log('Written by Nick Bakolias and William Sears');
+            mainMenu();
         }
 
     });
@@ -77,10 +94,42 @@ function createContact() {
     // Need to make sure user choses valid answers!
     inquirer.prompt([{
         name: 'first',
-        message: 'Enter first name:'
+        message: 'Enter first name:',
+        validate: function(input) {
+
+            // Declare function as asynchronous, and save the done callback 
+            var done = this.async();
+
+            // Do async stuff 
+            setTimeout(function() {
+                if (input === "") {
+                    // Pass the return value in the done callback 
+                    done("You must answer this question to proceed.");
+                    return;
+                }
+                // Pass the return value in the done callback 
+                done(true);
+            }, 3000);
+        }
     }, {
         name: 'last',
-        message: 'Enter last name:'
+        message: 'Enter last name:',
+        validate: function(input) {
+
+            // Declare function as asynchronous, and save the done callback 
+            var done = this.async();
+
+            // Do async stuff 
+            setTimeout(function() {
+                if (input === "") {
+                    // Pass the return value in the done callback 
+                    done("You must answer this question to proceed.");
+                    return;
+                }
+                // Pass the return value in the done callback 
+                done(true);
+            }, 3000);
+        }
     }, {
         name: 'birthday',
         message: 'Enter birthday (optional):'
@@ -101,74 +150,314 @@ function createContact() {
         if (choices.addressChoice.indexOf('home') > -1) {
             questions.push({
                 name: 'homeAddressNum',
-                message: 'Enter Home Address Line 1'
+                message: 'Enter Home Address Line 1',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'homeAddressStr',
                 message: 'Enter Home Address Line 2 (optional)'
             }, {
                 name: 'homeCity',
-                message: 'Enter Home City'
+                message: 'Enter Home City',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'homeProvince',
-                message: 'Enter Home Province'
+                message: 'Enter Home Province',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'HomeCountry',
-                message: 'Enter Home Country'
+                message: 'Enter Home Country',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             });
         }
         if (choices.addressChoice.indexOf('work') > -1) {
             questions.push({
                 name: 'workAddressNum',
-                message: 'Enter Work Address Line 1'
+                message: 'Enter Work Address Line 1',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'workAddressStr',
                 message: 'Enter Work Address Line 2 (optional)'
             }, {
                 name: 'workCity',
-                message: 'Enter City'
+                message: 'Enter City',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'workProvince',
-                message: 'Enter Province'
+                message: 'Enter Province',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'workCountry',
-                message: 'Enter Country'
+                message: 'Enter Country',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             });
         }
         if (choices.addressChoice.indexOf('other') > -1) {
             questions.push({
                 name: 'otherAddressNum',
-                message: 'Address Line 1'
+                message: 'Address Line 1',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'otherAddressStr',
                 message: 'Address Line 2 (optional)'
             }, {
                 name: 'otherCity',
-                message: 'Enter City'
+                message: 'Enter City',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'otherProvince',
-                message: 'Enter Province'
+                message: 'Enter Province',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             }, {
                 name: 'otherCountry',
-                message: 'Enter Country'
+                message: 'Enter Country',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             });
         }
 
         if (choices.phoneChoice.indexOf('home') > -1) {
             questions.push({
                 name: 'homePhone',
-                message: 'Enter Home Number'
+                message: 'Enter Home Number',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             });
         }
         if (choices.phoneChoice.indexOf('work') > -1) {
             questions.push({
                 name: 'workPhone',
-                message: 'Enter Work Number'
+                message: 'Enter Work Number',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             });
         }
         if (choices.phoneChoice.indexOf('other') > -1) {
             questions.push({
                 name: 'otherPhone',
-                message: 'Enter other Number'
+                message: 'Enter other Number',
+                validate: function(input) {
+
+                    // Declare function as asynchronous, and save the done callback 
+                    var done = this.async();
+
+                    // Do async stuff 
+                    setTimeout(function() {
+                        if (input === "") {
+                            // Pass the return value in the done callback 
+                            done("You must answer this question to proceed.");
+                            return;
+                        }
+                        // Pass the return value in the done callback 
+                        done(true);
+                    }, 3000);
+                }
             });
 
         }
@@ -177,6 +466,8 @@ function createContact() {
             var obj = {};
             obj.first = choices.first;
             obj.last = choices.last;
+            obj.addressChoice = choices.addressChoice;
+            obj.phoneChoice = choices.phoneChoice;
 
             if (choices.birthday) {
                 obj.birthday = choices.birthday;
@@ -403,13 +694,16 @@ function editContact() {
         type: 'checkbox',
         name: 'addressChoice',
         message: 'which address/es would you like to add?',
-        choices: ['home', 'work', 'other']
+        choices: ['home', 'work', 'other'],
+        default: contactList[currentIndex].addressChoice
 
     }, {
         type: 'checkbox',
         name: 'phoneChoice',
         message: 'which phone number/s would you like to add?',
-        choices: ['home', 'work', 'other']
+        choices: ['home', 'work', 'other'],
+        default: contactList[currentIndex].phoneChoice
+
     }], function(choices) {
 
         var questions = [];
